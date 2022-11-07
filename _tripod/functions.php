@@ -457,6 +457,8 @@ class ELA_Mods {
 		add_action( 'genesis_meta', array( $this, 'add_viewport' ), 2 );
 		add_action( 'wp_head', array( $this, 'add_to_header' ), 2 );
 		add_filter( 'body_class', array( $this, 'add_to_body_class' ) );
+
+		add_action( 'init', array( $this, 'project_custom_post_type' ) );
 	}
 
 
@@ -487,6 +489,48 @@ class ELA_Mods {
 		
 
 		return $classes;
+	}
+
+
+	//  create Project post type
+	public function project_custom_post_type() {
+		$labels = array(
+			'name'                => __( 'Project' ),
+			'singular_name'       => __( 'Project' ),
+			'menu_name'           => __( 'Projects' ),
+			'parent_item_colon'   => __( 'Parent Project' ),
+			'all_items'           => __( 'All Projects' ),
+			'view_item'           => __( 'View Project' ),
+			'add_new_item'        => __( 'Add New Project' ),
+			'add_new'             => __( 'Add New Project' ),
+			'edit_item'           => __( 'Edit Project' ),
+			'update_item'         => __( 'Update Project' ),
+			'search_items'        => __( 'Search Project' ),
+			'not_found'           => __( 'Not Found' ),
+			'not_found_in_trash'  => __( 'Not found in Trash' )
+		);
+		$args = array(
+			'label'               => __( 'project' ),
+			'description'         => __( get_bloginfo('title') . ' Project' ),
+			'labels'              => $labels,
+			'supports'            => array( 'title', 'thumbnail', 'revisions', 'custom-fields'),
+			'public'              => true,
+			'hierarchical'        => false,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_nav_menus'   => true,
+			'show_in_admin_bar'   => true,
+			'has_archive'         => true,
+			'menu_icon'			  => 'dashicons-editor-video',
+			'can_export'          => true,
+			'exclude_from_search' => false,
+				'yarpp_support'       => true,
+			'taxonomies' 	      => array('post_tag'),
+			'publicly_queryable'  => true,
+			'capability_type'     => 'page'
+		);
+
+		register_post_type( 'project', $args );
 	}
 	
 }
@@ -534,6 +578,26 @@ function makeID($id) {
 	$data = str_replace( "&", "", $data);
 	return $data;
 }
+
+
+
+#-----------------------------------------------------------------#
+#	ACF
+#-----------------------------------------------------------------#
+
+// Enable Site Options section
+if ( function_exists('acf_add_options_page') ) {
+	acf_add_options_page(array(
+		'page_title' 	=> __("Website Options"),
+		'menu_title'	=> __("Website Options"),
+		'menu_slug' 	=> 'global-settings',
+		'capability'	=> 'edit_posts',
+		'icon_url' 		=> 'dashicons-admin-site-alt3',
+		'redirect'		=> false,
+		'updated_message' => __("Website Options Updated", 'acf')
+	));
+}
+
 
 
 #-----------------------------------------------------------------#
@@ -672,11 +736,24 @@ class ELA_Elements {
 		 // $this->key = $key;
 	}
 
-	public function vimeoVideo( $id, $cls = false, $poster = false ) {
-		//	need to add poster code
-		$v = '<iframe class="lazy loadImg full__container rel '. $cls .'" data-src="https://player.vimeo.com/video/'. $id .'?autoplay=0&loop=0&muted=0&byline=0&portrait=0&title=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+	public static function vimeoVideo( $id, $cls = false, $modal = false, $poster = false ) {
+		if ( $modal ) {
+			$v = '<iframe class="full__container rel '. $cls .'" data-src="https://player.vimeo.com/video/'. $id .'&autoplay=1&loop=1&muted=0&byline=0&portrait=0&title=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		} else {
+			$v = '<iframe class="full__container rel '. $cls .'" src="https://player.vimeo.com/video/'. $id .'&autoplay=0&loop=0&muted=0&byline=0&portrait=0&title=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		}
 
 		return $v;
+	}
+
+	public static function youtubeVideo( $id, $cls = false, $modal = false ) {
+		if ( $modal ) {
+			$y = '<iframe class="full__container rel '. $cls .'" data-src="https://www.youtube.com/embed/'. $id .'?controls=1&showinfo=0&rel=0&autoplay=1&loop=1&modestbranding=0&iv_load_policy=3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		} else {
+			$y = '<iframe class="full__container rel '. $cls .'" src="https://www.youtube.com/embed/'. $id .'?controls=1&showinfo=0&rel=0&autoplay=0&loop=0&modestbranding=0&iv_load_policy=3" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		}
+
+		return $y;
 	}
 	
 }

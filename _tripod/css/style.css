@@ -2,9 +2,7 @@
 =========================================== */
 
 :root {
-    --text:#43454a;           /*  text default  */
-    --text-light:#fcfef0;     /*  text light default  */
-    --text-dark:#212427;      /*  text dark default  */
+    --dark:#121314;      /*  text dark default  */
 }
 
 /*  cursor  */
