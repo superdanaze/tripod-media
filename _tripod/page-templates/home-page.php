@@ -81,7 +81,7 @@ add_filter( 'genesis_entry_content', function() use( $vars, $projects, $func ) {
                 genesis_markup([
                     'open'		=> '<a %s>',
                     'context'	=> 'project_item',
-                    'atts'		=> [ 'class' => "project-item-wrap noover rel", 'href' => $link, 'rel' => "nofollow" ]
+                    'atts'		=> [ 'class' => "project-item-wrap noover rel start", 'href' => $link, 'rel' => "nofollow" ]
                 ]);
 
                     genesis_markup([

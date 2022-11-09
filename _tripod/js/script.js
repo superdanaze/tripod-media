@@ -194,7 +194,7 @@ window.isMobile = {
 				opacity : [ 0, 1 ],
 				duration : 1000,
 				easing : "linear",
-				delay : anime.stagger(250)
+				delay : anime.stagger(300)
 			});
 		}
 
