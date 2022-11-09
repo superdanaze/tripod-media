@@ -1,7 +1,11 @@
 @media screen and ( min-width: 1px ) {
     
-    /*  HERO SECTIONS
+    /*  TEMPLATE :: HOME
     =========================================== */
+
+    .projects-wrap {
+        grid-template-columns: 1fr;
+    }
     
     
 
@@ -23,7 +27,12 @@
 
 @media screen and ( min-width: 768px ) {
 
-    
+    /*  TEMPLATE :: HOME
+    =========================================== */
+
+    .projects-wrap {
+        grid-template-columns: 1fr 1fr;
+    }
 
 
 }

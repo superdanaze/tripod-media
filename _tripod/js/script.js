@@ -20,8 +20,30 @@ window.isMobile = {
 }
 
 !function() {
-	const text_light	= "#fcfef0";
-	const text_dark		= "#43454a";
+	const text_light	= "#9c9c8e";
+	const text_dark		= "#121314";
+
+
+	//	element peeking v2.0
+	let els = document.querySelectorAll('[data-fade]');
+
+	const fade = new IntersectionObserver((entries) => {
+		entries.forEach( entry => {
+
+			if ( entry.isIntersecting ) {
+				entry.target.classList.remove('start');
+			} else {
+				entry.target.classList.add('start');
+			}
+		});
+	},{
+		threshold : 0.25
+	});
+
+	els.forEach( el => {
+		fade.observe(el);
+	});
+
 	
 	let header = {
 		trigger		: document.querySelector('.nav-trigger-wrap'),
@@ -163,6 +185,25 @@ window.isMobile = {
 		}
 	};
 
+	let home = {
+		items		: document.querySelectorAll('.project-item-wrap'),
+
+		load_items: function() {
+			anime({
+				targets : this.items,
+				opacity : [ 0, 1 ],
+				duration : 1000,
+				easing : "linear",
+				delay : anime.stagger(250)
+			});
+		}
+
+	};
+
+	//	load home items
+	if ( home.items.length ) {
+		home.load_items();
+	}
 
 
 

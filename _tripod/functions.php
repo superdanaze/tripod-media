@@ -358,7 +358,7 @@ function ethosLA_enqueue_admin_items() {
 	// wp_enqueue_script( NEW_CLIENT. '-admin_script', get_stylesheet_directory_uri() . '/assets/js/admin.js',array(),false,true);
 }
 	
-add_action( 'admin_enqueue_scripts', 'ethosLA_enqueue_admin_items' );
+// add_action( 'admin_enqueue_scripts', 'ethosLA_enqueue_admin_items' );
 
 
 
@@ -473,7 +473,8 @@ class ELA_Mods {
 	public function add_to_header() {
 		$output = '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\r\n";
 		$output .= '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\r\n";
-		$output .= '<link href=""https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800;1000&display=swap" rel="stylesheet">' . "\r\n";
+		// $output .= '<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">' . "\r\n";
+		$output .= '<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">' . "\r\n";
 
 		print $output;
 	}
