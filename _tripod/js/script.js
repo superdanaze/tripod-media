@@ -20,8 +20,21 @@ window.isMobile = {
 }
 
 !function() {
+	const html = document.documentElement;
+	const body = document.body;
 	const text_light	= "#9c9c8e";
 	const text_dark		= "#121314";
+
+
+	function noscroll(s) {
+		if ( s ) {
+			html.classList.add('noscroll');
+			body.classList.add('noscroll');
+		} else {
+			html.classList.remove('noscroll');
+			body.classList.remove('noscroll');
+		}
+	}
 
 
 	//	element peeking v2.0
@@ -43,6 +56,8 @@ window.isMobile = {
 	els.forEach( el => {
 		fade.observe(el);
 	});
+
+
 
 	
 	let header = {
@@ -78,7 +93,10 @@ window.isMobile = {
 					targets : this.navwrap,
 					opacity : [ 0, 1 ],
 					duration : 1000,
-					easing : "linear"
+					easing : "linear",
+					begin : () => {
+						noscroll(true);
+					}
 				});
 
 				//	compress burger + spans color
@@ -143,7 +161,10 @@ window.isMobile = {
 					opacity : [ 1, 0 ],
 					duration : 1000,
 					delay : 250,
-					easing : "linear"
+					easing : "linear",
+					complete : () => {
+						noscroll();
+					}
 				});
 
 				//	rotate to burger

@@ -7,6 +7,13 @@
     --red:#cb2227;
 }
 
+/*  prevent scrolling  */
+
+html.noscroll,
+body.noscroll {
+    overflow: hidden;
+}
+
 /*  cursor  */
 
 .nopoint {
