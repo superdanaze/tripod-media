@@ -48,7 +48,7 @@ window.isMobile = {
 	let header = {
 		trigger		: document.querySelector('.nav-trigger-wrap'),
 		navwrap		: document.querySelector('.mobile-menu-master-wrap'),
-		ul			: document.getElementById('rp-mobile-navigation'),
+		ul			: document.getElementById('ela-mobile-navigation'),
 		_click		: true,
 
 		animate_burger: function(dir) {
@@ -71,6 +71,14 @@ window.isMobile = {
 				let open1 = anime.timeline({
 					duration : 250,
 					easing : "easeOutExpo"
+				});
+
+				//	fade in nav BG
+				anime({
+					targets : this.navwrap,
+					opacity : [ 0, 1 ],
+					duration : 1000,
+					easing : "linear"
 				});
 
 				//	compress burger + spans color
@@ -127,6 +135,15 @@ window.isMobile = {
 					duration : 250,
 					easing : "easeInExpo",
 					delay : anime.stagger(35, { from : 'last' })
+				});
+
+				//	fade nav BG out
+				anime({
+					targets : this.navwrap,
+					opacity : [ 1, 0 ],
+					duration : 1000,
+					delay : 250,
+					easing : "linear"
 				});
 
 				//	rotate to burger

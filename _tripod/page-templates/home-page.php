@@ -42,6 +42,7 @@ add_filter( 'genesis_markup_content', '__return_null' );
 add_filter( 'genesis_markup_content-sidebar-wrap', '__return_null' );
 
 
+
 //  VARS
 $func = new ELA_Funcs;
 $vars = array();

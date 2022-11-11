@@ -134,13 +134,13 @@
 
     /*  header nav  */
 
-    header .wrap {
+    /* header .wrap {
         display:-webkit-flex;
         display:flex;
         -webkit-align-items:center;
         align-items:center;
         position: relative;
-    }
+    } */
 
 }
 

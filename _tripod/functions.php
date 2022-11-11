@@ -486,7 +486,7 @@ class ELA_Mods {
 		$classes[] = $detect->isMobile() ? "ismobile" : "nomobile";
 
 		//	nav color
-		$classes[] = get_field('header_color_scheme');
+		$classes[] = "nav-light";
 		
 
 		return $classes;
@@ -679,7 +679,7 @@ class ELA_Header_Nav {
 			[
 				'open'		=> '<div %s>',
 				'context'	=> 'nav-trigger-wrap',
-				'atts'		=> [ 'class' => "nav-trigger-wrap flex mike abs", 'data-action' => "nav-open" ],
+				'atts'		=> [ 'class' => "nav-trigger-wrap flex abs", 'data-action' => "nav-open" ],
 				'content'	=> $spans,
 				'close'		=> '</div>',
 			]
@@ -714,7 +714,7 @@ class ELA_Header_Nav {
 			[
 				'open'		=> '<div %s>',
 				'context'	=> 'ela-mobile-nav-container',
-				'atts'		=> [ 'class' => "mobile-menu-master-wrap full__container full__height topleft mike fixed" ],
+				'atts'		=> [ 'class' => "mobile-menu-master-wrap full__container full__height topleft fixed" ],
 				'content'	=> $rp_mobile_nav_inner,
 				'close'		=> '</div>',
 			]
