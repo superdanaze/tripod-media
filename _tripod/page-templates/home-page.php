@@ -74,10 +74,13 @@ add_filter( 'genesis_entry_content', function() use( $vars, $projects, $func ) {
             foreach( $projects->posts as $key => $project ) {
                 $ID = $project->ID;
                 $title = $project->post_title;
+                $enabled = get_field('enabledisable', $ID);
                 $streaming = get_field('where_streaming', $ID);
                 $img = get_field('main_image', $ID);
                 $link = $project->guid;
 
+                //  do not print if project is not enabled
+                if ( !$enabled ) continue;
 
                 genesis_markup([
                     'open'		=> '<a %s>',
