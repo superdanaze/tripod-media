@@ -459,6 +459,8 @@ class ELA_Mods {
 		add_filter( 'body_class', array( $this, 'add_to_body_class' ) );
 
 		add_action( 'init', array( $this, 'project_custom_post_type' ) );
+
+		add_filter( 'genesis_footer', array( $this, 'footer' ), 5 );
 	}
 
 
@@ -532,6 +534,79 @@ class ELA_Mods {
 		);
 
 		register_post_type( 'project', $args );
+	}
+
+
+	public static function social_links( $container_class = "" ) {
+		/**
+		 * OPTIONS
+		 * 
+		 * fab fa-amazon : Amazon
+		 * far fa-envelope : Email
+		 * fab fa-facebook : Facebook
+		 * fab fa-imdb : IMDB
+		 * fab fa-instagram : Instagram
+		 * fab fa-linkedin : LinkedIn
+		 * fab fa-medium-m : Medium
+		 * fab fa-pinterest-p : Pinterest
+		 * fab fa-reddit-alien : Reddit
+		 * fab fa-skype : Skype
+		 * fab fa-snapchat-ghost : Snapchat
+		 * fab fa-twitter : Twitter
+		 * fab fa-tumblr-square : Tumblr
+		 * fab fa-vimeo-v : Vimeo
+		 * fab fa-youtube : YouTube
+		 * 
+		*/
+
+		$output = "";
+		$social = get_field( 'social_media_links', 'options' );
+
+		foreach( $social as $key => $s ) {
+			$pre = strtolower($s['profile']['label']) === "email" ? "mailto:" : "";
+			$last = $key === count($social) - 1 ? "nomargin " : "";
+			$output .= sprintf( '<a class="%srel" href="%s" target="_blank" title="%s" rel="nofollow""><i class="%s"></i></a>', $last, $pre . trim($s['link']), $s['profile']['label'], $s['profile']['value']  );
+		}
+
+		return genesis_markup(
+			[
+				'open'		=> '<div %s>',
+				'context'	=> NEW_CLIENT . '-social-container',
+				'atts'		=> [ 'class' => "social-container flex vert rel " . $container_class ],
+				'content'	=> $output,
+				'echo'		=> false,
+				'close'		=> '</div>',
+			]
+		);
+	}
+
+
+	public static function colophon() {
+		$output = sprintf( '<p class="colophon">Copyright &copy; %s · ', date('Y') );
+		$output .= get_bloginfo('title');
+		$output .= '<em>, all rights reserved</em>';
+		$output .= ' · carefully crafted by ';
+		$output .= '<a href="https://ethosla.com" target="_blank" rel="nofollow">ethosLA</a>';
+		$output .= '</p>';
+
+		return $output;
+	}
+
+
+	public function footer() {
+
+		get_template_part( E_TEMPLATE, 'footer' );
+
+		//	colophon
+		return genesis_markup(
+			[
+				'open'		=> '<div %s>',
+				'context'	=> NEW_CLIENT . '-colophon',
+				'atts'		=> [ 'class' => "colophon-wrap container text_center delicate", 'data-fade' => true ],
+				'content'	=> $this->colophon(),
+				'close'		=> '</div>',
+			]
+		);
 	}
 	
 }
