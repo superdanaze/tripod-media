@@ -304,6 +304,7 @@ define('E_FLEX','page-templates/template-parts/flex');
 define('E_PARTS', '/template-parts/template');
 define('IMG_ROOT','/assets/stuff/');
 define('IMG_USER_PATH','assets/themes/_tripod/images/');
+define('ELA_FALLBACK', get_field( 'fallback_image', 'options' ));
 
 //	mobile detect
 require_once 'lib/Mobile_Detect.php';
@@ -458,6 +459,8 @@ class ELA_Mods {
 		add_action( 'wp_head', array( $this, 'add_to_header' ), 2 );
 		add_filter( 'body_class', array( $this, 'add_to_body_class' ) );
 
+		add_filter( 'genesis_attr_site-header', array( $this, 'header_atts' ) );
+
 		add_action( 'init', array( $this, 'project_custom_post_type' ) );
 
 		add_filter( 'genesis_footer', array( $this, 'footer' ), 5 );
@@ -492,6 +495,14 @@ class ELA_Mods {
 		
 
 		return $classes;
+	}
+
+
+	public function header_atts( $attributes ) {
+		$attributes['data-fade'] = true;
+		$attributes['class'] = $attributes['class'] . " delicate";
+
+		return $attributes;
 	}
 
 

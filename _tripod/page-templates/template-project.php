@@ -13,12 +13,39 @@
     $credits = get_field('credits');
     $links = get_field('links');
     $gallery = get_field('image_gallery');
-    
+    $hero_img;
 
-    get_header(); 
+    //  determine hero image output
+    switch (true) {
+        case $main_img :
+            $hero_img = $main_img;
+        break;
 
-        
+        case $poster :
+            $hero_img = $poster;
+        break;
 
-    get_footer();
+        default :
+            $hero_img = ELA_FALLBACK;
+        break;
+    }
+
+
+        genesis_markup([
+            'open'		=> '<div %s>',
+            'context'	=> 'project',
+            'atts'		=> [ 'class' => "project-single rel", ]
+        ]);
+
+            //  hero area
+            get_template_part( E_TEMPLATES, 'single-hero', array( 'streaming' => $streaming, 'streaming_link' => $streaming_link, 'hero_img' => $hero_img ) );
+
+
+
+        genesis_markup([
+            'context'	=> 'project',
+            'close'		=> '</div>'
+        ]);
+
     
 ?>

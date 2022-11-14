@@ -125,13 +125,30 @@ footer {
 =========================================== */
 
 header.site-header {
-    z-index: 10;
-}
-header.site-header {
     background-color: transparent;
     width:100%;
     box-shadow: none;
+    z-index: 10;
     position: relative;
+}
+.single-project header {
+    position: absolute;
+}
+.single-project header:before {
+    background: -moz-linear-gradient(top, rgba(18,19,20,1) 0%, rgba(18,19,20,0) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(18,19,20,1)), color-stop(100%, rgba(18,19,20,0)));
+    background: -webkit-linear-gradient(top, rgba(18,19,20,1) 0%, rgba(18,19,20,0) 100%);
+    background: -o-linear-gradient(top, rgba(18,19,20,1) 0%, rgba(18,19,20,0) 100%);
+    background: -ms-linear-gradient(top, rgba(18,19,20,1) 0%, rgba(18,19,20,0) 100%);
+    background: linear-gradient(to bottom, rgba(18,19,20,1) 0%, rgba(18,19,20,0) 100%);
+    width:100%;
+    height:200px;
+    top:0;
+    left:0;
+    content:"";
+    display: block;
+    z-index: 0;
+    position: absolute;
 }
 header .wrap {
     display:-webkit-flex;
@@ -140,7 +157,7 @@ header .wrap {
     align-items:center;
     position: relative;
 }
-.title-area h1.site-title {
+.title-area .site-title {
     width:0;
     height:0;
     visibility: hidden;
@@ -359,6 +376,45 @@ a.project-item-wrap:hover .project-item-title ._streaming {
 }
 a.project-item-wrap:hover .project-item-title ._view {
     transition-delay: 0.7s;
+}
+
+
+/*  TEMPLATE :: PROJECT SINGLE
+=========================================== */
+
+section.project-hero {
+    height:max( 85vh, 400px );
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+.project-hero-img {
+    background-attachment: fixed;
+}
+.project-titles:before {
+    background: -moz-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(18,19,20,0)), color-stop(100%, rgba(18,19,20,1)));
+    background: -webkit-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    background: -o-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    background: -ms-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    background: linear-gradient(to bottom, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    width:100%;
+    height:200px;
+    bottom:0;
+    left:0;
+    content:"";
+    display: block;
+    z-index: -1;
+    position: absolute;
+}
+.project-titles a:hover {
+    -webkit-transform:translate3d(3px,0,0);
+    transform:translate3d(3px,0,0);
+}
+.project-titles a svg {
+    opacity:0;
+}
+.project-titles a:hover svg {
+    opacity:1;
 }
 
 
