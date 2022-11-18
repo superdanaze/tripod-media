@@ -11,7 +11,7 @@
     genesis_markup([
         'open'		=> '<section %s>',
         'context'	=> 'single_project_hero',
-        'atts'		=> [ 'class' => "project-hero full__container flex rel" ]
+        'atts'		=> [ 'class' => "project-hero full__container flex noover rel" ]
     ]);
   
         //  hero image
@@ -26,7 +26,7 @@
         genesis_markup([
             'open'		=> '<div %s>',
             'context'	=> 'single_project_titles',
-            'atts'		=> [ 'class' => "project-titles B_md L_md R_sm z5 delicate", 'data-fade' => true ],
+            'atts'		=> [ 'class' => "project-titles full__container B_md L_md R_sm z5 delicate rel", 'data-fade' => true ],
         ]);
 
             printf( '<h2 class="_title f-item nomargin f_light light-f">%s</h2>', $title );

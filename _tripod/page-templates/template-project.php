@@ -14,6 +14,7 @@
     $links = get_field('links');
     $gallery = get_field('image_gallery');
     $hero_img;
+    $container_classes = array();
 
     //  determine hero image output
     switch (true) {
@@ -30,16 +31,34 @@
         break;
     }
 
+    //  do we have a poster?
+    if ( $poster ) $container_classes[] = "has-poster";
+
 
         genesis_markup([
             'open'		=> '<div %s>',
             'context'	=> 'project',
-            'atts'		=> [ 'class' => "project-single rel", ]
+            'atts'		=> [ 'class' => sprintf( "project-single %s rel", implode( " ", $container_classes ) ) ]
         ]);
 
             //  hero area
             get_template_part( E_TEMPLATES, 'single-hero', array( 'streaming' => $streaming, 'streaming_link' => $streaming_link, 'hero_img' => $hero_img ) );
 
+            genesis_markup([
+                'open'		=> '<div %s>',
+                'context'	=> 'project_content_all_wrap',
+                'atts'		=> [ 'class' => "content-all-wrap container pad rel" ]
+            ]);
+
+                //  trailer area
+                if ( $trailer_ID ) get_template_part( E_TEMPLATES, 'single-trailer', array( 'trailerID' => $trailer_ID, 'trailer_type' => $trailer_type ) );
+
+
+
+            genesis_markup([
+                'context'	=> 'project_content_all_wrap',
+                'close'		=> '</div>'
+            ]);
 
 
         genesis_markup([

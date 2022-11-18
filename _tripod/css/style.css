@@ -95,7 +95,6 @@ footer {
 }
 
 
-
 /*  BUTTONS
 =========================================== */
 
@@ -119,6 +118,19 @@ footer {
 }
 
 
+/*  ANIMATIONS
+=========================================== */
+
+@keyframes zoomOut {
+    0%   { opacity:0; transform:scale3d(1.15, 1.15, 1) }
+    25%  { opacity:1 }
+    100% { transform:scale3d(1, 1, 1) }
+}
+@-webkit-keyframes zoomOut {
+    0%   { opacity:0; -webkit-transform:scale3d(1.15, 1.15, 1) }
+    25%  { opacity:1 }
+    100% { -webkit-transform:scale3d(1, 1, 1) }
+}
 
 
 /*  HEADER / NAVIGATION
@@ -382,6 +394,8 @@ a.project-item-wrap:hover .project-item-title ._view {
 /*  TEMPLATE :: PROJECT SINGLE
 =========================================== */
 
+/*  hero  */
+
 section.project-hero {
     height:max( 85vh, 400px );
     -webkit-align-items: flex-end;
@@ -389,6 +403,8 @@ section.project-hero {
 }
 .project-hero-img {
     background-attachment: fixed;
+    -webkit-animation:zoomOut 8s ease-in-out forwards;
+    animation:zoomOut 8s ease-in-out forwards;
 }
 .project-titles:before {
     background: -moz-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
@@ -398,7 +414,7 @@ section.project-hero {
     background: -ms-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
     background: linear-gradient(to bottom, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
     width:100%;
-    height:200px;
+    height:150%;
     bottom:0;
     left:0;
     content:"";
@@ -416,6 +432,7 @@ section.project-hero {
 .project-titles a:hover svg {
     opacity:1;
 }
+
 
 
 /*  FOOTER

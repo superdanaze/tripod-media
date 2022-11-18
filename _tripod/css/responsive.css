@@ -1,12 +1,29 @@
 @media screen and ( min-width: 1px ) {
+
+    /*  CONTAINERS
+    =========================================== */
+
+    .container.pad {
+        padding-inline:15px;
+    }
     
+
     /*  TEMPLATE :: HOME
     =========================================== */
 
     .projects-wrap {
         grid-template-columns: 1fr;
     }
+
+
+    /*  TEMPLATE :: PROJECT SINGLE
+    =========================================== */
     
+    /*  trailer  */
+
+    .project-trailer iframe {
+        height:calc( min(1300px, (100vw - 30px)) * 9 / 16 );
+    }
     
 
 }
@@ -49,11 +66,22 @@
 
 @media screen and ( min-width: 1025px ) {
 
-    
-
-
-    /*  HEADER / NAVIGATION
+    /*  CONTAINERS
     =========================================== */
+
+    .container.pad {
+        padding-inline:25px;
+    }
+
+
+    /*  TEMPLATE :: PROJECT SINGLE
+    =========================================== */
+    
+    /*  trailer  */
+
+    .project-trailer iframe {
+        height:calc( min(1300px, (100vw - 50px)) * 9 / 16 );
+    }
     
     
 }
