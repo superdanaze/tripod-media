@@ -53,7 +53,23 @@
                 //  trailer area
                 if ( $trailer_ID ) get_template_part( E_TEMPLATES, 'single-trailer', array( 'trailerID' => $trailer_ID, 'trailer_type' => $trailer_type ) );
 
+                genesis_markup([
+                    'open'		=> '<div %s>',
+                    'context'	=> 'project_content_inner',
+                    'atts'		=> [ 'class' => "content-inner rel T_lg" ]
+                ]);
 
+                    
+
+                    //  poster
+                    if ( $poster ) get_template_part( E_TEMPLATES, 'single-poster', array( 'poster' => $poster ) );
+
+
+
+                genesis_markup([
+                    'context'	=> 'project_content_inner',
+                    'close'     => '</div>'
+                ]);
 
             genesis_markup([
                 'context'	=> 'project_content_all_wrap',
