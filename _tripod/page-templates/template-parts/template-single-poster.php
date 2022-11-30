@@ -1,5 +1,5 @@
 <?php 
-    //  SECTION : SINGLE PROJECT TRAILER
+    //  SECTION : SINGLE PROJECT POSTER
 
     $poster = $args['poster'];
     $title = get_the_title();

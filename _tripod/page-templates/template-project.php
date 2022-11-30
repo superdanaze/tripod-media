@@ -31,6 +31,9 @@
         break;
     }
 
+    //  do we have a trailer?
+    if ( $trailer_ID ) $container_classes[] = "has-trailer";
+
     //  do we have a poster?
     if ( $poster ) $container_classes[] = "has-poster";
 
@@ -56,15 +59,28 @@
                 genesis_markup([
                     'open'		=> '<div %s>',
                     'context'	=> 'project_content_inner',
-                    'atts'		=> [ 'class' => "content-inner rel T_lg" ]
+                    'atts'		=> [ 'class' => "content-inner rel T_xlg" ]
                 ]);
 
-                    
+                    genesis_markup([
+                        'open'		=> '<div %s>',
+                        'context'	=> 'project_content_synopsis_credits',
+                        'atts'		=> [ 'class' => "content-synopsis-credits rel" ]
+                    ]);
+
+                        //  synopsis
+                        if ( $synopsis ) get_template_part( E_TEMPLATES, 'single-synopsis', array( 'synopsis' => $synopsis ) );
+
+                        //  credits
+                        if ( $credits ) get_template_part( E_TEMPLATES, 'single-credits', array( 'credits' => $credits ) );
+
+                    genesis_markup([
+                        'context'	=> 'project_content_synopsis_credits',
+                        'close'     => '</div>'
+                    ]);
 
                     //  poster
                     if ( $poster ) get_template_part( E_TEMPLATES, 'single-poster', array( 'poster' => $poster ) );
-
-
 
                 genesis_markup([
                     'context'	=> 'project_content_inner',

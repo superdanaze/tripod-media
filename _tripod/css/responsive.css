@@ -24,6 +24,12 @@
     .project-trailer iframe {
         height:calc( min(1300px, (100vw - 30px)) * 9 / 16 );
     }
+
+    /*  poster + synopsis + credits  */
+
+    .project-single.has-poster .content-inner {
+        grid-template-columns: 1fr;
+    }
     
 
 }
@@ -38,6 +44,14 @@
 
 @media screen and ( min-width: 640px ) {
 
+    /*  TEMPLATE :: PROJECT SINGLE
+    =========================================== */
+
+    /*  poster + synopsis + credits  */
+
+    .project-single.has-poster .content-inner {
+        grid-template-columns: 3fr 2fr;
+    }
 }
 
 
@@ -58,7 +72,14 @@
 
 @media screen and ( min-width: 960px ) {
 
-    
+    /*  TEMPLATE :: PROJECT SINGLE
+    =========================================== */
+
+    /*  poster + synopsis + credits  */
+
+    .project-single.has-poster .project-synopsis {
+        padding-top:50px;   
+    }
 
 }
 

@@ -67,6 +67,9 @@ h6 {
 .light-f {
     color:var(--light);
 }
+.red-f {
+    color:var(--red);
+}
 
 
 /*  CONTAINERS
@@ -394,6 +397,14 @@ a.project-item-wrap:hover .project-item-title ._view {
 /*  TEMPLATE :: PROJECT SINGLE
 =========================================== */
 
+/*  titles  */
+
+.project-content-title {
+    font-weight: 700;
+    color:var(--red);
+    margin:0 0 25px;
+}
+
 /*  hero  */
 
 section.project-hero {
@@ -431,6 +442,19 @@ section.project-hero {
 }
 .project-titles a:hover svg {
     opacity:1;
+}
+
+/*  poster + synopsis + credits  */
+
+.project-single.has-poster .content-inner {
+    display: grid;
+    gap:max(50px, 8vw);
+}
+.project-synopsis span a {
+    color:#fafafa;
+}
+.project-synopsis span a:hover {
+    color:var(--red);
 }
 
 
