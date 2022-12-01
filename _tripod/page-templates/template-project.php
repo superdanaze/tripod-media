@@ -15,6 +15,8 @@
     $gallery = get_field('image_gallery');
     $hero_img;
     $container_classes = array();
+    $streaming_title_link = $streaming_link ? array(array( 'name' => $streaming, 'link' => $streaming_link )) : null;
+    $links_all = $streaming_title_link;
 
     //  determine hero image output
     switch (true) {
@@ -36,6 +38,13 @@
 
     //  do we have a poster?
     if ( $poster ) $container_classes[] = "has-poster";
+
+    //  aggregate all links
+    if ( $streaming_title_link && $links ) {
+        $links_all = array_merge( $streaming_title_link, $links );
+    } else if ( !$streaming_title_link && $links ) {
+        $links_all = $links;
+    }
 
 
         genesis_markup([
@@ -73,6 +82,10 @@
 
                         //  credits
                         if ( $credits ) get_template_part( E_TEMPLATES, 'single-credits', array( 'credits' => $credits ) );
+
+                        //  links
+                        if ( $links_all ) get_template_part( E_TEMPLATES, 'single-links', array( 'links' => $links_all ) );
+                        // ELA_Funcs::test($links_all);
 
                     genesis_markup([
                         'context'	=> 'project_content_synopsis_credits',

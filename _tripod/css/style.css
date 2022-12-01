@@ -444,16 +444,20 @@ section.project-hero {
     opacity:1;
 }
 
-/*  poster + synopsis + credits  */
+/*  poster + synopsis + credits + links  */
 
 .project-single.has-poster .content-inner {
     display: grid;
     gap:max(50px, 8vw);
 }
+.project-synopsis span p:last-child {
+    margin-bottom: 0;
+}
 .project-synopsis span a {
     color:#fafafa;
 }
-.project-synopsis span a:hover {
+.project-synopsis span a:hover,
+.project-links-list a:hover h6 {
     color:var(--red);
 }
 
