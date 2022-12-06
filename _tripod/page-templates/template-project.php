@@ -85,7 +85,6 @@
 
                         //  links
                         if ( $links_all ) get_template_part( E_TEMPLATES, 'single-links', array( 'links' => $links_all ) );
-                        // ELA_Funcs::test($links_all);
 
                     genesis_markup([
                         'context'	=> 'project_content_synopsis_credits',
@@ -99,6 +98,9 @@
                     'context'	=> 'project_content_inner',
                     'close'     => '</div>'
                 ]);
+
+                //  image gallery
+                if ( $gallery ) get_template_part( E_TEMPLATES, 'single-gallery', array( 'gallery' => $gallery ) );
 
             genesis_markup([
                 'context'	=> 'project_content_all_wrap',

@@ -223,6 +223,8 @@ window.isMobile = {
 		}
 	};
 
+
+	//	home page project items
 	let home = {
 		items		: document.querySelectorAll('.project-item-wrap'),
 
@@ -238,10 +240,40 @@ window.isMobile = {
 
 	};
 
-	//	load home items
+	//	load home project items
 	if ( home.items.length ) {
 		home.load_items();
 	}
+
+
+	//	single project gallery
+	let spg = {
+		container	: document.querySelector('.project-gallery-inner'),
+		items		: document.querySelectorAll('.project-gallery-item'),
+
+		hover_effect: function(e) {
+			if ( e.type === "mouseenter" ) {
+				this.container.classList.add('hover-effect');
+				e.target.classList.add('hover');
+			}
+
+			if ( e.type === "mouseleave" ) {
+				this.container.classList.remove('hover-effect');
+				e.target.classList.remove('hover');
+			}
+		}
+	};
+
+	//	create hover effect listener on gallery items
+	spg.items.forEach( item => {
+		item.addEventListener('mouseenter', (e) => {
+			spg.hover_effect(e);
+		});
+
+		item.addEventListener('mouseleave', (e) => {
+			spg.hover_effect(e);
+		});
+	});
 
 
 
@@ -256,6 +288,7 @@ window.isMobile = {
 
 	});
 
+	
 
 	window.addEventListener('resize', function(e) {
 

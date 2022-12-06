@@ -461,6 +461,19 @@ section.project-hero {
     color:var(--red);
 }
 
+/*  gallery  */
+
+.project-gallery-inner {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap:25px;
+}
+.project-gallery-inner figure {
+    cursor: pointer;
+}
+.project-gallery-inner.hover-effect figure:not(.hover) {
+    opacity:0.4;
+}
+
 
 
 /*  FOOTER
