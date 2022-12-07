@@ -419,7 +419,7 @@ window.isMobile = {
 	};
 
 	//	create hover effect listener on gallery items
-	if ( !isMobile.any() ) {
+	if ( spg.items && !isMobile.any() ) {
 		spg.items.forEach( item => {
 			item.addEventListener('mouseenter', (e) => {
 				spg.hover_effect(e);
@@ -432,21 +432,21 @@ window.isMobile = {
 	}
 
 	//	handle touch events for mobile
-	spg.gallery_items_wrap.addEventListener('touchstart', (e) => {
-		spg.touchstartX = e.changedTouches[0].screenX;
-	}, false);
-	spg.gallery_items_wrap.addEventListener('touchend', (e) => {
-		spg.touchendX = e.changedTouches[0].screenX;
-
-		//	swiped left (next item)
-		if ( spg.touchendX < spg.touchstartX ) spg.handle_next_item();
-		
-		//	swipe right (prev item)
-		if ( spg.touchendX > spg.touchstartX ) spg.handle_prev_item();
-	}, false);
+	if ( spg.gallery_items_wrap ) {
+		spg.gallery_items_wrap.addEventListener('touchstart', (e) => {
+			spg.touchstartX = e.changedTouches[0].screenX;
+		}, false);
+		spg.gallery_items_wrap.addEventListener('touchend', (e) => {
+			spg.touchendX = e.changedTouches[0].screenX;
 	
-
-
+			//	swiped left (next item)
+			if ( spg.touchendX < spg.touchstartX ) spg.handle_next_item();
+			
+			//	swipe right (prev item)
+			if ( spg.touchendX > spg.touchstartX ) spg.handle_prev_item();
+		}, false);
+	}
+	
 
 	document.addEventListener('click', function(e) {
 		//	mobile nav

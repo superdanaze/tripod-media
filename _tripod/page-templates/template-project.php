@@ -50,7 +50,7 @@
         genesis_markup([
             'open'		=> '<div %s>',
             'context'	=> 'project',
-            'atts'		=> [ 'class' => sprintf( "project-single %s rel", implode( " ", $container_classes ) ) ]
+            'atts'		=> [ 'class' => sprintf( "project-single %s rel B_lg", implode( " ", $container_classes ) ) ]
         ]);
 
             //  hero area
