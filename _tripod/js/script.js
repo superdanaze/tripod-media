@@ -248,8 +248,13 @@ window.isMobile = {
 
 	//	single project gallery
 	let spg = {
-		container	: document.querySelector('.project-gallery-inner'),
-		items		: document.querySelectorAll('.project-gallery-item'),
+		container			: document.querySelector('.project-gallery-inner'),
+		items				: document.querySelectorAll('.project-gallery-item'),
+		gallery_modal		: document.querySelector('.project-gallery-modal'),
+		gallery_items_wrap	: document.querySelector('.gallery-modal-items'),
+		touchstartX			: 0,
+		touchendX			: 0,
+		_click				: true,
 
 		hover_effect: function(e) {
 			if ( e.type === "mouseenter" ) {
@@ -261,19 +266,185 @@ window.isMobile = {
 				this.container.classList.remove('hover-effect');
 				e.target.classList.remove('hover');
 			}
+		},
+
+		activate_first_item: function(e) {
+			this.current = parseInt(e.target.dataset.item);
+
+			let children = this.gallery_items_wrap.children,
+				item = children[this.current - 1];
+			
+			anime({
+				targets : item,
+				opacity : [ 0, 1 ],
+				duration : 400,
+				easing : "linear"
+			});
+		},
+
+		deactivate_last_item: function() {
+			let children = this.gallery_items_wrap.children,
+				item = children[this.current - 1];
+
+			item.style.opacity = 0;
+		},
+
+		handle_gallery_modal: function(e, state) {
+			//	open
+			if ( state && this._click ) {
+				//	handle clicks
+				this._click = false;
+
+				anime({
+					targets : this.gallery_modal,
+					opacity : 1,
+					duration : 400,
+					easing : "linear",
+					begin : () => {
+						//	unhide
+						this.gallery_modal.classList.remove('hide');
+
+						//	disable scroll
+						noscroll(true);
+					},
+					complete : () => {
+						//	bring in selected item
+						this.activate_first_item(e);
+
+						//	enable clicks
+						this._click = true;
+					}
+				});
+			}
+
+			//	close
+			if ( !state && this._click ) {
+				//	handle clicks
+				this._click = false;
+
+				anime({
+					targets : this.gallery_modal,
+					opacity : 0,
+					duration : 400,
+					easing : "linear",
+					complete : () => {
+						//	hide modal
+						this.gallery_modal.classList.add('hide');
+
+						//	deactivate active image
+						this.deactivate_last_item();
+
+						//	enable scroll
+						noscroll(false);
+
+						//	enable clicks
+						this._click = true;
+					}
+				});
+			}
+		},
+
+		handle_prev_item: function() {
+			//	handle clicks
+			if ( !this._click ) return;
+			this._click = false;
+
+			let len = this.gallery_items_wrap.children.length,
+				current_item = this.gallery_items_wrap.children[this.current - 1],
+				new_current = this.current - 1 === 0 ? len : this.current - 1,
+				new_current_item = this.gallery_items_wrap.children[new_current - 1];
+
+			let prev = anime.timeline({
+				duration : 400,
+				easing : "easeOutQuad"
+			});
+
+			//	fade out prev item, fade in new item
+			prev.add({
+				targets : current_item,
+				opacity : 0,
+				translateX : [ 0, 10 ]
+			}).add({
+				targets : new_current_item,
+				opacity : 1,
+				translateX : [ -10, 0 ],
+				complete : () => {
+					//	set new current
+					this.current = new_current;
+
+					//	enable clicks
+					this._click = true;
+				}
+			});
+		},
+
+		handle_next_item: function() {
+			//	handle clicks
+			if ( !this._click ) return;
+			this._click = false;
+
+			let len = this.gallery_items_wrap.children.length,
+				current_item = this.gallery_items_wrap.children[this.current - 1],
+				new_current = this.current === len ? 1 : this.current + 1,
+				new_current_item = this.gallery_items_wrap.children[new_current - 1];
+
+			console.log({
+				curr : this.current,
+				new : new_current
+			});
+
+			let next = anime.timeline({
+				duration : 400,
+				easing : "easeOutQuad"
+			});
+
+			//	fade out prev item, fade in new item
+			next.add({
+				targets : current_item,
+				opacity : 0,
+				translateX : [ 0, -10 ]
+			}).add({
+				targets : new_current_item,
+				opacity : 1,
+				translateX : [ 10, 0 ],
+				complete : () => {
+					//	set new current
+					this.current = new_current;
+
+					//	enable clicks
+					this._click = true;
+				}
+			});
 		}
 	};
 
 	//	create hover effect listener on gallery items
-	spg.items.forEach( item => {
-		item.addEventListener('mouseenter', (e) => {
-			spg.hover_effect(e);
+	if ( !isMobile.any() ) {
+		spg.items.forEach( item => {
+			item.addEventListener('mouseenter', (e) => {
+				spg.hover_effect(e);
+			});
+	
+			item.addEventListener('mouseleave', (e) => {
+				spg.hover_effect(e);
+			});
 		});
+	}
 
-		item.addEventListener('mouseleave', (e) => {
-			spg.hover_effect(e);
-		});
-	});
+	//	handle touch events for mobile
+	spg.gallery_items_wrap.addEventListener('touchstart', (e) => {
+		spg.touchstartX = e.changedTouches[0].screenX;
+	}, false);
+	spg.gallery_items_wrap.addEventListener('touchend', (e) => {
+		spg.touchendX = e.changedTouches[0].screenX;
+
+		//	swiped left (next item)
+		if ( spg.touchendX < spg.touchstartX ) spg.handle_next_item();
+		
+		//	swipe right (prev item)
+		if ( spg.touchendX > spg.touchstartX ) spg.handle_prev_item();
+	}, false);
+	
 
 
 
@@ -285,6 +456,14 @@ window.isMobile = {
 		if ( e.target.dataset.action === "nav-close" ) {
 			header.animate_burger(false);
 		}
+
+		//	single project gallery modal
+		if ( e.target.classList.contains('project-gallery-item') ) spg.handle_gallery_modal(e, true);
+		if ( e.target.classList.contains('gallery-modal-close') ) spg.handle_gallery_modal(e, false);
+
+		//	single project gallery modal navigation
+		if ( e.target.classList.contains('gallery-modal-prev') ) spg.handle_prev_item();
+		if ( e.target.classList.contains('gallery-modal-next') ) spg.handle_next_item();
 
 	});
 

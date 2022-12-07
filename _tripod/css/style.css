@@ -474,6 +474,48 @@ section.project-hero {
     opacity:0.4;
 }
 
+/*  gallery modal  */
+
+.project-gallery-modal {
+    background-color:rgba(0,0,0,0.85);
+}
+button.gallery-modal-close {
+    background:none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+button.gallery-modal-close svg {
+    font-size: 30px;
+    color:var(--light);
+}
+button.gallery-modal-close:hover svg {
+    -webkit-transform:scale(1.1);
+    transform:scale(1.1);
+}
+.gallery-modal-inner {
+    grid-template-columns: 50px 1fr 50px;
+}
+nav.gallery-nav {
+    cursor: pointer;
+}
+nav.gallery-nav svg {
+    font-size: 40px;
+    color:var(--light);
+    opacity: 0.65;
+    z-index: 5;
+}
+nav.gallery-nav:hover svg {
+    opacity: 1;
+    -webkit-transform:scale(1.1);
+    transform:scale(1.1);
+}
+.modal-gallery-item img {
+    width:auto;
+    max-width: 100%;
+    height:auto;
+    max-height: 90vh;
+}
+
 
 
 /*  FOOTER
