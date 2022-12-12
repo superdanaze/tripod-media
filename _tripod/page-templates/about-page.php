@@ -59,7 +59,7 @@ add_filter( 'genesis_entry_content', function() use( $vars, $func ) {
 
     ob_start();
 
-        //  hero
+        //  HERO
         genesis_markup([
             'open'		=> '<section %s>',
             'context'	=> 'about_hero',
@@ -118,6 +118,103 @@ add_filter( 'genesis_entry_content', function() use( $vars, $func ) {
             'close'		=> '</section>'
         ]);
 
+
+        //  TEAM
+        if ( $vars->team ) :
+            genesis_markup([
+                'open'		=> '<section %s>',
+                'context'	=> 'about_team',
+                'atts'		=> [ 'class' => "about-team full__container rel T_xlg" ]
+            ]);
+
+                genesis_markup([
+                    'open'		=> '<div %s>',
+                    'context'	=> 'about_team_inner',
+                    'atts'		=> [ 'class' => "about-team-inner container pad rel" ]
+                ]);
+
+                    //  title
+                    if ( $vars->team_title ) printf( '<h5 class="about-title text_center delicate" data-fade>%s</h5>', strtoupper( trim( $vars->team_title ) ) );
+
+                    //  team
+                    genesis_markup([
+                        'open'		=> '<div %s>',
+                        'context'	=> 'about_team_wrap',
+                        'atts'		=> [ 'class' => "about-team-wrap grid rel" ]
+                    ]);
+
+                        foreach( $vars->team as $key => $member ) {
+                            genesis_markup([
+                                'open'		=> '<figure %s>',
+                                'context'	=> 'team_member_' . $key,
+                                'atts'		=> [ 'class' => "team-member text_center delicate", 'data-fade' => true ]
+                            ]);
+
+                                //  title
+                                if ( $member['title'] ) printf( '<p class="light-f f_med nomargin">%s</p>', strtoupper( trim( $member['title'] ) ) );
+
+                                //  name
+                                if ($member['name'] ) printf( '<h6 class="light-f nomargin">%s</h6>', trim( $member['name'] ) );
+
+                            genesis_markup([
+                                'context'	=> 'team_member_' . $key,
+                                'close'     => '</figure>'
+                            ]);
+                        }
+
+                    genesis_markup([
+                        'context'	=> 'about_team_wrap',
+                        'close'     => '</div>'
+                    ]);
+
+                genesis_markup([
+                    'context'	=> 'about_team_inner',
+                    'close'     => '</div>'
+                ]);
+
+            genesis_markup([
+                'context'	=> 'about_team',
+                'close'     => '</section>'
+            ]);
+        endif;
+
+
+        //  CONTACT INFORMATION
+        if ( $vars->contact_info ) :
+            genesis_markup([
+                'open'		=> '<section %s>',
+                'context'	=> 'about_contact',
+                'atts'		=> [ 'class' => "about-contact full__container rel T_xlg" ]
+            ]);
+
+                genesis_markup([
+                    'open'		=> '<div %s>',
+                    'context'	=> 'about_contact_inner',
+                    'atts'		=> [ 'class' => "about-contact-inner container pad rel" ]
+                ]);
+
+                    //  title
+                    if ( $vars->contact_title ) printf( '<h5 class="about-title text_center delicate" data-fade>%s</h5>', strtoupper( trim( $vars->contact_title ) ) );
+
+                    //  contact info
+                    genesis_markup([
+                        'open'		=> '<div %s>',
+                        'context'	=> 'about_contact_content',
+                        'atts'		=> [ 'class' => "about-contact-content _small text_center light-f rel delicate", 'data-fade' => true ],
+                        'content'   => $vars->contact_info,
+                        'close'     => '</div>'
+                    ]);
+
+                genesis_markup([
+                    'context'	=> 'about_contact_inner',
+                    'close'     => '</div>'
+                ]);
+
+            genesis_markup([
+                'context'	=> 'about_contact',
+                'close'     => '</section>'
+            ]);
+        endif;
 
 
     $output = ob_get_clean();

@@ -452,6 +452,33 @@ figure.about-gallery-item img {
 }
 
 
+/*  titles  */
+
+.about-title {
+    font-weight: 700;
+    color:var(--red);
+    margin:0 0 50px;
+}
+
+/*  team  */
+
+.about-team-wrap {
+    gap:50px;
+}
+figure.team-member p {
+    font-size: 15px;
+}
+
+/*  contact information  */
+
+.about-contact-content a {
+    color:#fafafa;
+}
+.about-contact-content a:hover {
+    color:var(--red);
+}
+
+
 /*  TEMPLATE :: PROJECT SINGLE
 =========================================== */
 
