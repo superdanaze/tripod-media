@@ -5,7 +5,7 @@
     genesis_markup([
         'open'		=> '<section %s>',
         'context'	=> 'single_project_gallery',
-        'atts'		=> [ 'class' => "project-gallery T_xlg rel delicate", 'data-fade' => true ]
+        'atts'		=> [ 'class' => "project-gallery T_xlg rel delicate" ]
     ]);
 
         //  gallery
@@ -20,7 +20,7 @@
                     'open'		=> '<figure %s>',
                     'context'	=> 'single_project_gallery_item_' . $key,
                     'atts'		=> [ 'class' => "project-gallery-item slow_and_smooth", 'data-item' => $key + 1 ],
-                    'content'   => wp_get_attachment_image( $item['id'], "medium", false, array( 'class' => "nopoint image fit cover" ) ),
+                    'content'   => wp_get_attachment_image( $item['id'], "medium", false, array( 'class' => "nopoint image fit cover delicate", 'data-fade' => true ) ),
                     'close'     => '</figure>'
                 ]);
             }

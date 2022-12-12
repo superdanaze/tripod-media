@@ -388,11 +388,6 @@ window.isMobile = {
 				new_current = this.current === len ? 1 : this.current + 1,
 				new_current_item = this.gallery_items_wrap.children[new_current - 1];
 
-			console.log({
-				curr : this.current,
-				new : new_current
-			});
-
 			let next = anime.timeline({
 				duration : 400,
 				easing : "easeOutQuad"
