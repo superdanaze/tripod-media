@@ -3,7 +3,8 @@
 
 :root {
     --dark:#121314;      /*  text dark default  */
-    --light:#9c9c8e;
+    /* --light:#9c9c8e; */
+    --light:#bfbfae;
     --red:#cb2227;
 }
 
@@ -89,6 +90,9 @@ footer {
     max-width: unset;
     padding: 0;
 }
+aside.sidebar-primary {
+    display:none;
+}
 
 .container {
     width:100%;
@@ -146,7 +150,8 @@ header.site-header {
     z-index: 10;
     position: relative;
 }
-.single-project header {
+.single-project header,
+.tm-about-page header {
     position: absolute;
 }
 .single-project header:before {
@@ -394,6 +399,59 @@ a.project-item-wrap:hover .project-item-title ._view {
 }
 
 
+/*  TEMPLATE :: ABOUT
+=========================================== */
+
+.about-hero {
+    height:max(85vh, 450px);
+}
+.about-hero-inner {
+    width:115vw;
+    -webkit-animation:zoomOut 8s ease-in-out forwards;
+    animation:zoomOut 8s ease-in-out forwards;
+}
+.about-hero-inner:before {
+    background-color: var(--dark);
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    content:"";
+    display: block;
+    opacity: 0.85;
+    z-index: 1;
+    position: absolute;
+}
+.about-hero-inner:after {
+    background: -moz-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(18,19,20,0)), color-stop(100%, rgba(18,19,20,1)));
+    background: -webkit-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    background: -o-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    background: -ms-linear-gradient(top, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    background: linear-gradient(to bottom, rgba(18,19,20,0) 0%, rgba(18,19,20,1) 100%);
+    width:100%;
+    height:30%;
+    bottom:0;
+    left:0;
+    content:"";
+    display: block;
+    z-index: 2;
+    position: absolute;
+}
+figure.about-gallery-item {
+    border-left:2px solid var(--dark);
+    border-right:2px solid var(--dark);
+    -webkit-transform:skew(-8deg);
+    transform:skew(-8deg);
+}
+figure.about-gallery-item img {
+    width: 150%;
+    max-width: unset;
+    -webkit-transform:skew(8deg);
+    transform:skew(8deg);
+}
+
+
 /*  TEMPLATE :: PROJECT SINGLE
 =========================================== */
 
@@ -456,6 +514,9 @@ section.project-hero {
 .project-synopsis span a {
     color:#fafafa;
 }
+/* .project-links-list a h6 {
+    display: inline;
+} */
 .project-synopsis span a:hover,
 .project-links-list a:hover h6 {
     color:var(--red);

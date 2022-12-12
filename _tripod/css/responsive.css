@@ -65,7 +65,6 @@
         grid-template-columns: 1fr 1fr;
     }
 
-
 }
 
 
@@ -161,7 +160,12 @@
     }
 
 
-    
+    /*  TEMPLATE :: ABOUT
+    =========================================== */
+
+    figure.about-gallery-item:last-child {
+        display:none !important;
+    }
     
 }
 
