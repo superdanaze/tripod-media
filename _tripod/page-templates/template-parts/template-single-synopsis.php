@@ -8,7 +8,7 @@
     ]);
 
         //  title
-        print '<h5 class="project-content-title">SYNOPSIS</h5>';
+        print '<h5 class="project-content-title">ABOUT</h5>';
 
         //  synopsis
         printf( '<span class="light-f nomargin">%s</span>', trim($args['synopsis']) );

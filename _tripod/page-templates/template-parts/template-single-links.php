@@ -24,7 +24,7 @@
                 //  make sure we have a name and link
                 if ( !$link['link'] || !$link['name'] ) continue;
 
-                printf( '<a href="%s" target="_blank" rel="nofollow"><h6 class="light-f nomargin easy_does_it">%s</h6></a>', trim($link['link']), trim( strtoupper( $link['name'] ) ) );
+                printf( '<a href="%s" target="_blank" rel="nofollow"><h6 class="light-f nomargin easy_does_it">%s</h6></a>', trim($link['link']), trim( $link['name'] ) );
             }
 
         genesis_markup([

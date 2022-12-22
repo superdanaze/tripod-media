@@ -31,11 +31,10 @@
 
             printf( '<h2 class="_title f-item nomargin f_light light-f">%s</h2>', $title );
 
-            if ( $streaming && $streaming_link ) {
-                printf( '<a class="flex vert slow_and_smooth" href="%s" target="_blank" rel="nofollow">', $streaming_link );
-                    printf( '<h6 class="light-f nomargin R_mini">%s</h6><i class="fal fa-long-arrow-right light-f slow_and_smooth"></i>', $streaming );
-                print '</a>';
-            }
+            if ( $streaming && $streaming_link ) printf( '<a class="flex vert slow_and_smooth" href="%s" target="_blank" rel="nofollow">', $streaming_link );
+                if ( $streaming ) printf( '<h6 class="light-f nomargin R_mini">%s</h6>', $streaming );
+                if ( $streaming && $streaming_link ) print '<i class="fal fa-long-arrow-right light-f slow_and_smooth"></i>';
+            if ( $streaming && $streaming_link ) print '</a>';
 
         genesis_markup([
             'close'     => '</div>',

@@ -320,11 +320,12 @@ body.mobile-nav .mobile-menu-master-wrap:before {
 #ela-mobile-navigation {
     -webkit-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: space-evenly;
-    justify-content: space-evenly;
+    -webkit-justify-content: center;
+    justify-content: center;
 }
 #ela-mobile-navigation li {
     opacity: 0;
+    padding-block:50px;
 }
 #ela-mobile-navigation li a {
     font-family: 'Space Grotesk', sans-serif;
@@ -332,6 +333,7 @@ body.mobile-nav .mobile-menu-master-wrap:before {
     font-weight: 700;
     letter-spacing: 6px;
     color:var(--light);
+    position: relative;
 }
 
 

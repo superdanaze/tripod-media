@@ -254,6 +254,7 @@ window.isMobile = {
 		gallery_items_wrap	: document.querySelector('.gallery-modal-items'),
 		touchstartX			: 0,
 		touchendX			: 0,
+		is_active			: false,
 		_click				: true,
 
 		hover_effect: function(e) {
@@ -280,6 +281,8 @@ window.isMobile = {
 				duration : 400,
 				easing : "linear"
 			});
+
+			this.is_active = true;
 		},
 
 		deactivate_last_item: function() {
@@ -287,6 +290,8 @@ window.isMobile = {
 				item = children[this.current - 1];
 
 			item.style.opacity = 0;
+
+			this.is_active = false;
 		},
 
 		handle_gallery_modal: function(e, state) {
@@ -426,8 +431,20 @@ window.isMobile = {
 		});
 	}
 
-	//	handle touch events for mobile
 	if ( spg.gallery_items_wrap ) {
+		//	handle key presses
+		document.addEventListener('keydown', (e) => {
+			//	arrow left
+			if ( spg.is_active && (e.keyCode === 37 || e.code === "ArrowLeft" || e.key === "ArrowLeft") ) spg.handle_prev_item();
+
+			//	arrow right
+			if ( spg.is_active && (e.keyCode === 39 || e.code === "ArrowRight" || e.key === "ArrowRight") ) spg.handle_next_item();
+			
+			//	escape
+			if ( spg.is_active && (e.keyCode === 27 || e.code === "Escape" || e.key === "Escape") ) spg.handle_gallery_modal(e, false);
+		});
+
+		//	handle touch events for mobile
 		spg.gallery_items_wrap.addEventListener('touchstart', (e) => {
 			spg.touchstartX = e.changedTouches[0].screenX;
 		}, false);
