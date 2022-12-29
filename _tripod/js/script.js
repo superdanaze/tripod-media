@@ -58,8 +58,6 @@ window.isMobile = {
 	});
 
 
-
-	
 	let header = {
 		trigger		: document.querySelector('.nav-trigger-wrap'),
 		navwrap		: document.querySelector('.mobile-menu-master-wrap'),
@@ -476,12 +474,6 @@ window.isMobile = {
 		//	single project gallery modal navigation
 		if ( e.target.classList.contains('gallery-modal-prev') ) spg.handle_prev_item();
 		if ( e.target.classList.contains('gallery-modal-next') ) spg.handle_next_item();
-
-	});
-
-	
-
-	window.addEventListener('resize', function(e) {
 
 	});
 	

@@ -632,6 +632,12 @@ footer.site-footer:before {
     -webkit-flex-direction: column;
     flex-direction: column;
 }
+.footer-info a {
+    color:var(--red);
+}
+.footer-info a:hover {
+    color:#fafafa;
+}
 .footer-social a {
     color:var(--light);
     -webkit-transition:0.25s all ease-in-out;
