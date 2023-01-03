@@ -140,7 +140,7 @@ add_filter( 'genesis_entry_content', function() use( $vars, $func ) {
                     genesis_markup([
                         'open'		=> '<div %s>',
                         'context'	=> 'about_team_wrap',
-                        'atts'		=> [ 'class' => "about-team-wrap grid rel" ]
+                        'atts'		=> [ 'class' => "about-team-wrap flex horiz rel" ]
                     ]);
 
                         foreach( $vars->team as $key => $member ) {

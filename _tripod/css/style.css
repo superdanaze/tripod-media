@@ -24,6 +24,45 @@ body.noscroll {
     pointer-events: all;
 }
 
+/*  background image positions  */
+
+/*
+top-left : Top Left
+top-center : Top Center
+top-right : Top Right
+center-left : Center Left
+center : Center Center
+center-right : Center Right
+bottom-left : Bottom Left
+bottom-center : Bottom Center
+bottom-right : Bottom Right
+*/
+
+.background.top-left {
+    background-position: left top;
+}
+.background.top-center {
+    background-position: center top;
+}
+.background.top-right {
+    background-position: right top;
+}
+.background.center-left {
+    background-position: left center;
+}
+.background.center-right {
+    background-position: right center;
+}
+.background.bottom-left {
+    background-position: left bottom;
+}
+.background.bottom-center {
+    background-position: center bottom;
+}
+.background.bottom-right {
+    background-position: right bottom;
+}
+
 
 /*  TYPOGRAPHY
 =========================================== */
@@ -466,6 +505,8 @@ figure.about-gallery-item img {
 
 .about-team-wrap {
     gap:50px;
+    -webkit-flex-wrap:wrap;
+    flex-wrap:wrap;
 }
 figure.team-member p {
     font-size: 15px;
@@ -500,7 +541,6 @@ section.project-hero {
     align-items: flex-end;
 }
 .project-hero-img {
-    background-attachment: fixed;
     -webkit-animation:zoomOut 8s ease-in-out forwards;
     animation:zoomOut 8s ease-in-out forwards;
 }

@@ -77,6 +77,7 @@ add_filter( 'genesis_entry_content', function() use( $vars, $projects, $func ) {
                 $enabled = get_field('enabledisable', $ID);
                 $streaming = get_field('where_streaming', $ID);
                 $img = get_field('main_image', $ID);
+                $img_position = get_field('main_image_position', $ID);
                 $link = $project->guid;
 
                 //  do not print if project is not enabled
@@ -99,7 +100,7 @@ add_filter( 'genesis_entry_content', function() use( $vars, $projects, $func ) {
                         genesis_markup([
                             'open'		=> '<div %s>',
                             'context'	=> 'project_item_bg',
-                            'atts'		=> [ 'class' => "project-item-bg full__container full__height background center topleft abs", 'style' => sprintf( 'background-image:url(%s);', $func->imgsize($img) ) ],
+                            'atts'		=> [ 'class' => sprintf( "project-item-bg full__container full__height background %s topleft abs", $img_position ), 'style' => sprintf( 'background-image:url(%s);', $func->imgsize($img) ) ],
                             'close'     => '</div>'
                         ]);
 

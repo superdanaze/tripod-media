@@ -400,7 +400,7 @@ class ELA_Funcs {
 
 			//	mobile
 			case $detect->isMobile() && !$detect->isTablet() :
-				return $arr['sizes']['medium_large'];
+				return !$size ? $arr['sizes']['large'] : $arr['sizes']['medium_large'];
 			break;
 		}
 	}

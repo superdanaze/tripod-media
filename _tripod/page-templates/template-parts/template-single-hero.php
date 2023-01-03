@@ -4,6 +4,7 @@
     $streaming = trim($args['streaming']);
     $streaming_link = trim($args['streaming_link']);
     $hero_img = $args['hero_img'];
+    $img_position = $args['position'];
     $title = get_the_title();
     $func = new ELA_Funcs;
 
@@ -18,7 +19,7 @@
         genesis_markup([
             'open'		=> '<div %s>',
             'context'	=> 'single_project_hero_img',
-            'atts'		=> [ 'class' => "project-hero-img full__container full__height topleft background center abs", 'style' => sprintf( 'background-image:url(%s);', $func->imgsize( $hero_img ) ) ],
+            'atts'		=> [ 'class' => sprintf( "project-hero-img full__container full__height topleft background %s abs", $img_position ), 'style' => sprintf( 'background-image:url(%s);', $func->imgsize( $hero_img ) ) ],
             'close'     => '</div>'
         ]);
 

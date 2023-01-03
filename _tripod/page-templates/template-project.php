@@ -7,6 +7,7 @@
     $streaming_link = get_field('where_streaming_link');
     $synopsis = get_field('synopsis');
     $main_img = get_field('main_image');
+    $main_img_position = get_field('main_image_position');
     $poster = get_field('film_poster');
     $trailer_ID = get_field('trailer_id');
     $trailer_type = get_field('trailer_type');
@@ -54,7 +55,7 @@
         ]);
 
             //  hero area
-            get_template_part( E_TEMPLATES, 'single-hero', array( 'streaming' => $streaming, 'streaming_link' => $streaming_link, 'hero_img' => $hero_img ) );
+            get_template_part( E_TEMPLATES, 'single-hero', array( 'streaming' => $streaming, 'streaming_link' => $streaming_link, 'hero_img' => $hero_img, 'position' => $main_img_position ) );
 
             genesis_markup([
                 'open'		=> '<div %s>',
